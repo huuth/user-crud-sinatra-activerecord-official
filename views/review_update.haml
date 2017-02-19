@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title Update Review
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "css/user.css", :rel => "stylesheet"}/
+  %body
+    .contaner
+      %h1 Update Review
+      %hr
+      .form
+        %form{:action => '/review/update?id=' + @review[:id].to_s, :method => 'post', :enctype => 'multipart/form-data'}
+          .wrap_element
+            %label Subject
+            %span *
+            %input{:type => 'text', :required => '', :name => 'subject', :value => @review[:subject]}
+          
+          .wrap_element
+            %label Reviewer
+            %span
+            %input{:type => 'text', :required => '', :value => session[:user][:last_name] +" "+session[:user][:first_name]}
+          
+          .wrap_element
+            %label Content
+            %span *
+            %input{:type => 'text', :required => '', :name => 'content', :value => @review[:content]}
+
+          .wrap_element
+            %label Star
+            %input{:type => 'number', :required => '', :min => 1, :max => 5,:name => 'star', :value => @review[:star]}
+
+          .button
+            %input{:type => 'submit', :value => 'Submit'}
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}

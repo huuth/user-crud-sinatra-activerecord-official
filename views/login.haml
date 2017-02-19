@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title Login
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "css/user.css", :rel => "stylesheet"}/
+  %body
+    .contaner
+      %h1 Login
+      
+      %hr
+      .form
+        %form{:action => '/auth', :method => 'post', :enctype => 'multipart/form-data'}
+          .wrap_element
+            %label Email
+            %span *
+            %input{:type => 'email', :requiredd => '', :name => 'user[email]'}
+  
+          .wrap_element
+            %label Password
+            %span *
+            %input{:type => 'password', :required => '', :name => 'user[password]'}
+
+
+          .button
+            %input{:type => 'submit', :value => 'Submit'}
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}

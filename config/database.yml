@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  database: demo_ruby
+  username: root
+  password: sa123456
+  host: localhost

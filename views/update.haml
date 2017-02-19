@@ -1,0 +1,64 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title New User
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "css/user.css", :rel => "stylesheet"}/
+    :javascript
+      var user_id = #{@user[:id]};
+
+  %body
+    / - @user[:status] = 0
+    - status = @user[:status].to_i == 1 ? false : true
+    .contaner
+      %h1 Update User     
+      %p=  "Verify your account by email!" if status
+      %hr
+      .form
+        %form{:action => "/update?id=#{@user[:id]}", :method => 'post', :enctype => 'multipart/form-data'}
+          .wrap_element
+            %label First Name
+            %span *
+            %input{:type => 'text', :required => '', :name => 'first_name', :value => @user[:first_name], :readonly => status}
+
+          .wrap_element
+            %label Last Name
+            %span *
+            %input{:type => 'text', :required => '', :name => 'last_name', :value => @user[:last_name], :readonly => status}
+
+          
+          .wrap_element
+            %label Email
+            %span *
+            %input{:type => 'email', :requiredd => '', :name => 'email', :value => @user[:email], :readonly => status}
+            .err
+          .wrap_element
+            %label Password
+            %span *
+            %input{:type => 'password', :required => '', :name => 'password', :value => @user[:password], :readonly => status}
+            %p= "* " + session[:err_new].to_s if session[:err_new] != nil
+
+
+          .wrap_element
+            %label Avatar
+            %input{:id=>'avatar', :type => 'file', :accept => 'image/*image/x-png,image/gif,image/jpeg', :name => 'avatar', :disabled => status}
+
+          #image-upload.image-upload.row
+            .thumb
+              %img{:src => "uploads/#{@user[:avatar]}"}
+
+          .wrap_element
+            %label About me
+            %textarea{:type => 'textarea', :required => '', :name => 'about_me', :readonly => status}= @user[:about_me]
+
+          .button
+            %input{:type => 'submit', :value => 'Submit'}
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/update.js"}

@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title New Book
+    %link{:href => "../css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "../css/user.css", :rel => "stylesheet"}/
+    %link{:href => "../css/show.css", :rel => "stylesheet"}/
+  %body
+    .contaner
+      %h1 New Book
+      %hr
+      .form
+        %form{:action => '/book/new', :method => 'post', :enctype => 'multipart/form-data'}
+          .wrap_element
+            %label Title
+            %span *
+            %input{:type => 'text', :required => '', :name => 'book[title]'}
+          
+          .wrap_element
+            %label Author
+            %span
+            %input{:type => 'text', :required => '', :value => @user[:last_name] +" "+@user[:first_name], :readonly => true}
+          
+          .wrap_element
+            %label Publisher
+            %span *
+            %input{:type => 'text', :required => '', :name => 'book[publisher]'}
+
+          .wrap_element
+            %label Year
+            %input{:type => 'number', :required => '', :name => 'book[year]'}
+
+          .button
+            %input{:type => 'submit', :value => 'Submit'}
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}

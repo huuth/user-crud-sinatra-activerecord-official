@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title Show Book
+    %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "../css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "../css/user.css", :rel => "stylesheet"}/
+    %link{:href => "../css/show.css", :rel => "stylesheet"}/
+
+  %body
+    %h1= "Show Book by " + session[:user][:last_name] + " " + session[:user][:first_name]
+    .contaner
+      %table
+        %thead
+          %tr
+            %th Title
+            %th Publisher
+            %th Year
+            %th Action
+        %tbody
+        %hr
+        - @books.each do |book|
+          %tr
+            %td= book['title']
+            %td= book['publisher']
+            %td= book['year']
+            %td
+              %a{:href => "/book/update?id=#{book[:id]}"}
+                %button{:value => "#{book[:id]}", :name => 'update_index'} Update
+                
+              %a{:href => "/book/delete?id=#{book[:id]}"}
+                %button{:value => "#{book[:id]}", :name => 'delete_index'} Delete 
+              
+
+    %script{:src => "js/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
+    %script{:src => "js/user_cru.js"}
