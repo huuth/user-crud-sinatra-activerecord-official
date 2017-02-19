@@ -1,4 +1,6 @@
-*Build: bundle install
+*Build: 
+
+	bundle install
 
 *Build MySQL Database:
 	
