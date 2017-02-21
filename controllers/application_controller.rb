@@ -22,8 +22,8 @@ class ApplicationController < Sinatra::Base
 		if session[:user_id] == nil
 			redirect to('/login') 
 		end
-		@users = User.all
-		haml :index
+		# @users = User.find(session[:user_id])
+		haml :show_user
 	end
 
 	

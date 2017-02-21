@@ -12,10 +12,11 @@ class UserController < ApplicationController
 		end
 		params[:user][:avatar] = filename
 		params[:user][:status] = 0
+
 		@user = User.new(params[:user])
 		@user.save
 
-		@user.sendEmailVerify(@user[:id])
+		@user.sendEmailVerify(@user[:id], @user[:email])
 		session[:user_id] = @user[:id]
 		redirect to('/show')
 	end
@@ -83,6 +84,7 @@ class UserController < ApplicationController
 	end
 
 	post '/upload_image' do
+
 		filename = params[:file][:filename]
 		file =	 params[:file][:tempfile]
 		File.open(File.join(settings.upload_dir, filename), 'wb') do |f|

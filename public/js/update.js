@@ -1,6 +1,8 @@
 $(function(){
   $('input[type=file]').on('change', function(event){
     files = event.target.files;
+
+    
     console.log(files);
     var img = document.createElement("IMG");
     img.setAttribute("src", URL.createObjectURL(files[0]));
@@ -18,6 +20,7 @@ $(function(){
     form_data.append("file", file_data)              // Appending parameter named file with properties of file_field to form_data
     form_data.append("id", user_id)                 // Adding extra parameters to form_data
     console.log(user_id);
+    
     $.ajax({
                 url: "/upload_image",
                 dataType: 'script',

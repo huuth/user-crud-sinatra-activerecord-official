@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	    (user && user.password == params[:password]) ? user : nil
   	end
 
-  	def sendEmailVerify(user_id)
+  	def sendEmailVerify(user_id, email)
   		obj = Hash.new
   		obj[:uid] = Digest::MD5.hexdigest rand(1000.1).to_s
   		obj[:user_id] = user_id
@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
 		end
 
   		mail = Mail.new do
-       	to 'truongthanhhhuu@gmail.com'
+      to email
      	from 'hawkingth@gmail.com'
-  		subject 'testing sendmail'
-     	body "http://localhost:9292/verify?uid=" + uid[:uid]
+  		subject 'Verify your email!'
+     	body "Click link to verify your account: http://localhost:9292/verify?uid=" + uid[:uid]
 		end
 
 		mail.deliver

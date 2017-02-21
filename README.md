@@ -14,4 +14,5 @@
 	rackup
 
 Goodluck!!!
-Hawking
+
+Copyright by Hawking
