@@ -17,14 +17,21 @@
       .form
         %form{:action => '/review/new', :method => 'post', :enctype => 'multipart/form-data'}
           .wrap_element
-            %label Subject
-            %span *
-            %input{:type => 'text', :required => '', :name => 'book_review[subject]'}
-          
-          .wrap_element
             %label Reviewer
             %span
             %input{:type => 'text', :required => '', :value => session[:user][:last_name] +" "+session[:user][:first_name], :readonly => true}
+
+          .wrap_element
+            %label Choose book
+            %span *
+            %select{:name => "book_review[book_id]"}
+              - @books.each do |book|
+                %option{:value => book[:id]}=  book[:title]
+
+          .wrap_element
+            %label Subject
+            %span *
+            %input{:type => 'text', :required => '', :name => 'book_review[subject]'}
           
           .wrap_element
             %label Content
@@ -38,6 +45,6 @@
           .button
             %input{:type => 'submit', :value => 'Submit'}
 
-    %script{:src => "js/jquery.min.js"}
-    %script{:src => "js/bootstrap.min.js"}
-    %script{:src => "js/user_cru.js"}
+    %script{:src => "../js/jquery.min.js"}
+    %script{:src => "../js/bootstrap.min.js"}
+    %script{:src => "../js/user_cru.js"}

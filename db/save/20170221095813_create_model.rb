@@ -20,8 +20,9 @@ class CreateModels < ActiveRecord::Migration[5.0]
 	end
 
 	create_table :book_reviews do |t|
-	    t.integer  :star
 	    t.belongs_to :user, index: true
+	    t.belongs_to :book, index: true, unique: true
+	    t.integer  :star
 	    t.string  :subject
 	    t.string  :content
 	    t.timestamps

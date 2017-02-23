@@ -13,6 +13,8 @@
 
   %body
     %h1= "Show Book by " + session[:user][:last_name] + " " + session[:user][:first_name]
+    %a{:href => "/book/new"}
+      %button{:name => ''} New book
     .contaner
       %table
         %thead
@@ -29,9 +31,10 @@
             %td= book['publisher']
             %td= book['year']
             %td
+              %a{:href => "/book/reviews?id=#{book[:id]}"}
+                %button{:value => "#{book[:id]}", :name => 'update_index'} Show Review
               %a{:href => "/book/update?id=#{book[:id]}"}
                 %button{:value => "#{book[:id]}", :name => 'update_index'} Update
-                
               %a{:href => "/book/delete?id=#{book[:id]}"}
                 %button{:value => "#{book[:id]}", :name => 'delete_index'} Delete 
               

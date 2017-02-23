@@ -1,5 +1,6 @@
 class BookController < ApplicationController
-	
+	# before_action authenticate_user!
+    
 	get '/book' do
 		redirect to('/book/show')
 	end
@@ -44,4 +45,9 @@ class BookController < ApplicationController
 		redirect to('/book/show')
 	end
 
+	get '/book/reviews' do 
+		@book = Book.find(params[:id])
+		@reviews = BookReview.where("book_id = ?", params[:id])
+		haml :all_review_of_book
+	end
 end

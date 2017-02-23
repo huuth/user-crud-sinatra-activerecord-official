@@ -8,6 +8,7 @@ class ReviewController < ApplicationController
 		if session[:user_id] == nil
 			redirect to('/login') 
 		end
+		@books = Book.all
 		haml :new_review
 	end
 

@@ -1,4 +1,4 @@
-class CreateModels < ActiveRecord::Migration[5.0]
+class DbModels < ActiveRecord::Migration[5.0]
   def change
   	create_table :users do |t|
 	    t.string  :first_name
@@ -33,6 +33,5 @@ class CreateModels < ActiveRecord::Migration[5.0]
 	    t.integer :user_id
 	    t.timestamps
 	end
-
   end
 end

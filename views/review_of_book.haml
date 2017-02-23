@@ -5,16 +5,15 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title Show Review
+    %title Review 
     %link{:href => "data:image/x-icon;,", :rel => "shortcut icon", :type => "image/x-icon"}/
     %link{:href => "../css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:href => "../css/user.css", :rel => "stylesheet"}/
     %link{:href => "../css/show.css", :rel => "stylesheet"}/
 
   %body
-    %h1= "Show Review by " + session[:user][:last_name] + " " + session[:user][:first_name]
+    %h1= "Review of " + @book[:title]
     %a{:href => "/review/new"}
-      %button New Review 
     .contaner
       %table
         %thead
@@ -23,7 +22,6 @@
             %th Content
             %th Star
             %th Review by
-            %th Action
         %tbody
         %hr
         - @reviews.each do |review|
@@ -32,12 +30,7 @@
             %td= review['content']
             %td= review['star']
             %td
-            %td
-              %a{:href => "/review/update?id=#{review[:id]}"}
-                %button{:value => "#{review[:id]}", :name => 'update_index'} Update
-                
-              %a{:href => "/review/delete?id=#{review[:id]}"}
-                %button{:value => "#{review[:id]}", :name => 'delete_index'} Delete 
+              
               
 
     %script{:src => "js/jquery.min.js"}
