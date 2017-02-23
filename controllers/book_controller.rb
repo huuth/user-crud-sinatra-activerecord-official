@@ -45,9 +45,11 @@ class BookController < ApplicationController
 		redirect to('/book/show')
 	end
 
-	get '/book/reviews' do 
+	get '/book/reviews' do
 		@book = Book.find(params[:id])
-		@reviews = BookReview.where("book_id = ?", params[:id])
+		@reviews = BookReview.select('book_reviews.*, users.*, books.*')
+							 .joins('inner join users on book_reviews.user_id = users.id inner join books on book_reviews.book_id = books.id')
+							 .where('book_reviews.book_id = ?', params[:id])
 		haml :all_review_of_book
 	end
 end

@@ -19,19 +19,19 @@
       %table
         %thead
           %tr
+            %th Book
             %th Subject
             %th Content
             %th Star
-            %th Review by
             %th Action
         %tbody
         %hr
         - @reviews.each do |review|
           %tr
+            %td= review['title']
             %td= review['subject']
             %td= review['content']
             %td= review['star']
-            %td
             %td
               %a{:href => "/review/update?id=#{review[:id]}"}
                 %button{:value => "#{review[:id]}", :name => 'update_index'} Update

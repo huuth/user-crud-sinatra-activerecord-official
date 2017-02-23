@@ -23,7 +23,9 @@ class ReviewController < ApplicationController
 	end
 
 	get '/review/show' do
-		@reviews = BookReview.where("user_id = ?", session[:user_id])
+		@reviews = BookReview.select('book_reviews.*, books.*')
+							 .joins('inner join books on book_reviews.book_id = books.id')
+							 .where("book_reviews.user_id = ?", session[:user_id])
 		haml :show_review
 	end
 
